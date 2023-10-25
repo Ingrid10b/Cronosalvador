@@ -8,7 +8,7 @@ public class Volumen : MonoBehaviour
 {
     public Slider slider;
     public float sliderValue;
-    public Image imagenMute;
+    public RawImage imagenMute;
     // Start is called before the first frame update
     void Start()
     {
