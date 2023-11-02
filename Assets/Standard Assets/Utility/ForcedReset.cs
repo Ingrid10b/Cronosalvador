@@ -11,7 +11,11 @@ public class ForcedReset : MonoBehaviour
     private void Update()
     {
         // if we have forced a reset ...
+<<<<<<< HEAD
         if (CrossPlatformInputManager.GetButtonDown("ResetObject"))
+=======
+        //if (CrossPlatformInputManager.GetButtonDown("ResetObject"))
+>>>>>>> develop
         {
             //... reload the scene
             SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
