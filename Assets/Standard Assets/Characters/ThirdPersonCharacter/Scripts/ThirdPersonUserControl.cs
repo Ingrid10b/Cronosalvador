@@ -7,8 +7,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
     [RequireComponent(typeof (ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
+<<<<<<< Updated upstream
         private Transform enemigo; // Referencia al objeto del jugador.
 
+=======
+>>>>>>> Stashed changes
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
@@ -32,9 +35,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
+<<<<<<< Updated upstream
 
             enemigo = GameObject.FindWithTag("Enemy").transform; // Asigna el jugador por etiqueta "Player".
 
+=======
+>>>>>>> Stashed changes
         }
 
 
