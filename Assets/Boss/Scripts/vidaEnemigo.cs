@@ -5,22 +5,31 @@ using UnityEngine;
 public class vidaEnemigo : MonoBehaviour
 {
     public int maxHealth = 50;
-    private int currentHealth;
+    public bool isDead;
+    public int currentHealth;
+    private Animator animator;
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)
     {
+        if (isDead == true) return;
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            // El jugador murió, aquí puedes realizar las acciones necesarias.
-            // Por ejemplo, reiniciar el juego o mostrar un mensaje de derrota.
+            Death();
             Debug.Log("El enemigo murió");
         }
 
+    }
+
+    void Death()
+    {
+        isDead = true;
+        animator.SetTrigger("death");
+        Destroy(gameObject, 2);
     }
 }

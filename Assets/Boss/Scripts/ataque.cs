@@ -8,7 +8,6 @@ public class ataque : MonoBehaviour
     public int damage = 10;
     public float attackCooldown = 2.0f;
     private float lastAttackTime = 0.0f;
-    private Animator animator;
 
 
     private Transform enemy; // Referencia al objeto del jugador.
@@ -16,7 +15,6 @@ public class ataque : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
         enemy = GameObject.FindWithTag("Enemy").transform; // Asigna el jugador por etiqueta "Player".
         navMeshAgent = GetComponent<NavMeshAgent>();
 
@@ -36,11 +34,10 @@ public class ataque : MonoBehaviour
         if (Time.time - lastAttackTime >= attackCooldown)
         {
             // Realiza la lógica de ataque al jugador aquí.
-            vidaEnemigo playerHealth = enemy.GetComponent<vidaEnemigo>();
-            if (playerHealth != null)
+            vidaEnemigo enemyHealth = enemy.GetComponent<vidaEnemigo>();
+            if (enemyHealth != null)
             {
-
-                playerHealth.TakeDamage(damage);
+                enemyHealth.TakeDamage(damage);
                 lastAttackTime = Time.time;
             }
         }
