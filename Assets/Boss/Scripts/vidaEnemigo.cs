@@ -20,7 +20,12 @@ public class vidaEnemigo : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            if ()
+            {
             Death();
+                
+            }
+            DeathMonsterNight();
             Debug.Log("El enemigo murió");
         }
 
@@ -30,6 +35,13 @@ public class vidaEnemigo : MonoBehaviour
     {
         isDead = true;
         animator.SetTrigger("death");
+        Destroy(gameObject, 2);
+    }
+
+    void DeathMonsterNight()
+    {
+        isDead = true;
+        animator.SetTrigger("die");
         Destroy(gameObject, 2);
     }
 }
