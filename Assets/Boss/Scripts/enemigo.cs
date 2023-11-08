@@ -20,9 +20,7 @@ public class enemigo : MonoBehaviour
     public float slowTimer;
     public float stopFactor = 0f;
 
-    //var rotation
-    public float x;
-    public float velocityRotation;
+    public GameObject Boss;
 
     private Transform player; // Referencia al objeto del jugador.
     private NavMeshAgent navMeshAgent;
@@ -39,12 +37,6 @@ public class enemigo : MonoBehaviour
     }
     private void Update()
     {
-
-        //asignamos valores a los ejes x
-        x = Input.GetAxis("Horizontal");
-
-        transform.Rotate(0, x * Time.deltaTime * velocityRotation, 0);
-        animator.SetFloat("VelX", x);
 
         if (player != null)
         {
@@ -72,9 +64,11 @@ public class enemigo : MonoBehaviour
 
         if (Time.time - lastAttackTime >= attackCooldown)
         {
-    
+           
+            vidaBoss bossHealth = Boss.GetComponent<vidaBoss>();
+
             Vida playerHealth = player.GetComponent<Vida>();
-            if (playerHealth != null)
+            if (playerHealth != null && !bossHealth.isDead)
             {
 
                 playerHealth.TakeDamage(damage);

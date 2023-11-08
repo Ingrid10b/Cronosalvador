@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Vida : MonoBehaviour
 {
+    public event EventHandler gameOver;
+    public GameObject vidaJugador;
+
+
     public int maxHealth = 100;
     private int currentHealth;
 
@@ -17,9 +22,8 @@ public class Vida : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            // El jugador murió, aquí puedes realizar las acciones necesarias.
-            // Por ejemplo, reiniciar el juego o mostrar un mensaje de derrota.
-            Debug.Log("El jugador murió");
+            gameOver?.Invoke(this, EventArgs.Empty);
+            vidaJugador.SetActive(false);
         }
 
     }

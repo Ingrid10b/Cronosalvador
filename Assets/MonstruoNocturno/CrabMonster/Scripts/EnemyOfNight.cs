@@ -21,9 +21,7 @@ public class EnemyOfNight : MonoBehaviour
     public float slowTimer;
     public float stopFactor = 0f;
 
-    //var rotation
-    public float x;
-    public float velocityRotation;
+    public GameObject Enemy;
 
     private Transform player; // Referencia al objeto del jugador.
     private NavMeshAgent navMeshAgent;
@@ -73,9 +71,10 @@ public class EnemyOfNight : MonoBehaviour
 
         if (Time.time - lastAttackTime >= attackCooldown)
         {
+            vidaBoss enemyHealth = Enemy.GetComponent<vidaBoss>();
 
             Vida playerHealth = player.GetComponent<Vida>();
-            if (playerHealth != null)
+            if (playerHealth != null && !enemyHealth.isDead )
             {
 
                 playerHealth.TakeDamage(damage);

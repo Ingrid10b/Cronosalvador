@@ -5,41 +5,39 @@ using UnityEngine.AI;
 
 public class ataque : MonoBehaviour
 {
-    public int damage = 10;
-    public float attackCooldown = 2.0f;
-    private float lastAttackTime = 0.0f;
-
-
-    private Transform enemy; // Referencia al objeto del jugador.
+    public float attackCooldown = 2.0f; // Rango de ataque
+    public int damage = 10; // Daño causado por el jugador
+    public GameObject Boss;
     private NavMeshAgent navMeshAgent;
 
-    private void Start()
-    {
-        enemy = GameObject.FindWithTag("Enemy").transform; // Asigna el jugador por etiqueta "Player".
-        navMeshAgent = GetComponent<NavMeshAgent>();
-
-
-
-    }
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Attack();
-        }
-    }
+            // Detecta enemigos cercanos dentro del rango de ataque
+            Collider[] hitEnemies = Physics.OverlapSphere(transform.position, attackCooldown);
 
-    private void Attack()
-    {
-        if (Time.time - lastAttackTime >= attackCooldown)
-        {
-            // Realiza la lógica de ataque al jugador aquí.
-            vidaEnemigo enemyHealth = enemy.GetComponent<vidaEnemigo>();
-            if (enemyHealth != null)
+            // Aplica daño a los enemigos detectados
+            foreach (Collider enemy in hitEnemies)
             {
-                enemyHealth.TakeDamage(damage);
-                lastAttackTime = Time.time;
+                vidaBoss enemyHealth = enemy.GetComponent<vidaBoss>();
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(damage);
+                }
             }
         }
     }
+
+
+
+
+    private void Start()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+
+    }
+
+
+  
 }
